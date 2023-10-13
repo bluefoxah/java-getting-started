@@ -102,7 +102,7 @@ public class NewInteractiveCardService {
                     .setCallbackType("stream")
                     .setImGroupOpenSpaceModel(imGroupOpenSpaceModel)
                     .setImGroupOpenDeliverModel(imGroupOpenDeliverModel)
-                    .setOpenSpaceId(buildGroupOpenSpaceId(openConvId));
+                    .setOpenSpaceId(buildOpenSpaceId("group", openConvId));
 
             client.createAndDeliverWithOptions(request, headers, new RuntimeOptions());
         } catch (Exception e) {
