@@ -23,15 +23,21 @@ public class ApiController {
     private final RobotGroupMessagesService robotGroupMessagesService;
     private final RobotInteractiveCardsService robotInteractiveCardsService;
     private final InteractiveCardsInstanceService interactiveCardsInstanceService;
+
+    private final NewInteractiveCardService newInteractiveCardService;
+
     private final UserService userService;
 
     @Autowired
     public ApiController(RobotGroupMessagesService robotGroupMessagesService,
                          RobotInteractiveCardsService robotInteractiveCardsService,
-                         InteractiveCardsInstanceService interactiveCardsInstanceService, UserService userService) {
+                         InteractiveCardsInstanceService interactiveCardsInstanceService,
+                         NewInteractiveCardService newInteractiveCardService,
+                         UserService userService) {
         this.robotGroupMessagesService = robotGroupMessagesService;
         this.robotInteractiveCardsService = robotInteractiveCardsService;
         this.interactiveCardsInstanceService = interactiveCardsInstanceService;
+        this.newInteractiveCardService = newInteractiveCardService;
         this.userService = userService;
     }
 
@@ -57,6 +63,13 @@ public class ApiController {
     public String sendMessageCard(@RequestBody MessageCardModel messageCardModel) throws Exception {
         robotInteractiveCardsService.send(messageCardModel.getOpenConversationId());
         log.info("sendMessageCard success {}", messageCardModel);
+        return "OK";
+    }
+
+    @PostMapping(value = "/sendStreamMessageCard")
+    public String sendStreamMessageCard(@RequestBody MessageCardModel messageCardModel) throws Exception {
+        newInteractiveCardService.createAndDeliverToIMWithStream(messageCardModel.getOpenConversationId());
+        log.info("sendStreamMessageCard success {}", messageCardModel);
         return "OK";
     }
 

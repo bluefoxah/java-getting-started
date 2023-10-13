@@ -31,7 +31,12 @@
 		<dependency>
 			<groupId>com.aliyun</groupId>
 			<artifactId>dingtalk</artifactId>
-			<version>1.4.53</version>
+			<version>2.0.26</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dingtalk.open</groupId>
+			<artifactId>app-stream-client</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 
 		<dependency>
